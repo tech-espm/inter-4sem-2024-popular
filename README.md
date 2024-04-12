@@ -9,7 +9,8 @@
 ### 2024-01
 
 ## Integrantes
-- [nome](https://github.com/tech-espm/)
+- [Dylan Ashby](https://github.com/dylanashbeer/)
+- [Gabriel Formario](https://github.com/gaformario/)
 
 ## Descrição do Projeto
 
