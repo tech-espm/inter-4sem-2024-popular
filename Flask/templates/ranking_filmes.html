@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Filmes</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ranking de Filmes Mais Populares</h1>
+    <table>
+        <tr>
+            <th>Posição</th>
+            <th>Título</th>
+            <th>Data de Varredura</th>
+            <th>Poster</th>
+        </tr>
+        {% for filme in filmes %}
+        <tr>
+            <td>{{ filme.posicao }}</td>
+            <td>{{ filme.titulo }}</td>
+            <td>{{ filme.data}}</td>
+            <td><img src="{{ filme.poster }}" alt="{{ filme.titulo }}"></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

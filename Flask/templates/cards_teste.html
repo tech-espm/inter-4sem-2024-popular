@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Filmes e Séries</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="text-center mt-4">Ranking de Filmes e Séries Mais Populares</h1>
+
+    <div class="container">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                Filtro por Tipo
+            </div>
+            <div class="card-body">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle animated--grow-in" type="button" id="filtroDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filtrar por
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filtroDropdown">
+                        <li><a class="dropdown-item" href="#" data-tipo="todos">Todos</a></li>
+                        <li><a class="dropdown-item" href="#" data-tipo="filme">Filmes</a></li>
+                        <li><a class="dropdown-item" href="#" data-tipo="serie">Séries</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="cards-container">
+            {% for filme in filmes %}
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ filme.poster }}" class="img-fluid rounded-start w-100" alt="{{ filme.titulo }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ filme.titulo }}</h5>
+                                <p class="card-text">Ano: {{ filme.ano }}</p>
+                                <p class="card-text">Duração: {{ filme.duracao }}</p>
+                                <p class="card-text">Classificação: {{ filme.classificacao }}</p>
+                                <p class="card-text">Nota: {{ filme.nota }}</p>
+                                <p class="card-text">Tipo: {{ 'Filme' if filme.tipo == 1 else 'Série' }}</p>
+                                <p class="card-text"><small class="text-muted">Data de Varredura: {{ filme.data }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-item').click(function(e) {
+                e.preventDefault();
+                var tipo = $(this).data('tipo');
+                $('#filtroDropdown').text($(this).text());
+                $('#cards-container .card').show();
+
+                if (tipo !== 'todos') {
+                    $('#cards-container .card').each(function() {
+                        var tipoCard = $(this).find('.card-text:eq(4)').text().trim();
+                        if (tipoCard !== tipo.charAt(0).toUpperCase() + tipo.slice(1)) {
+                            $(this).hide();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

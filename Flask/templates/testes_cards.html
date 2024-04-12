@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Filmes e Séries</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="text-center mt-4">Ranking de Filmes e Séries Mais Populares</h1>
+    
+    <label for="filtro" class="mt-2">Filtrar por:</label>
+    <select id="filtro" class="form-select mb-3" onchange="filtrar()">
+        <option value="0">Todos</option>
+        <option value="1">Filmes</option>
+        <option value="2">Séries</option>
+    </select>
+    
+    <div class="container">
+        <div class="row" id="cards-container">
+            {% for filme in filmes %}
+            <div class="col-lg-6 mb-4 card {% if filme.tipo == 1 %}tipo-1{% else %}tipo-2{% endif %}">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ filme.poster }}" class="img-fluid rounded-start w-100" alt="{{ filme.titulo }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"> {{filme.posicao}}:  {{ filme.titulo }}</h5>
+                                <p class="card-text">Ano: {{ filme.ano }}</p>
+                                <p class="card-text">Duração: {{ filme.duracao }}</p>
+                                <p class="card-text">Classificação: {{ filme.classificacao }}</p>
+                                <p class="card-text">Nota: {{ filme.nota }}</p>
+                                <p class="card-text">Tipo: {{ 'Filme' if filme.tipo == 1 else 'Série' }}</p>
+                                <p class="card-text"><small class="text-muted">Data de Varredura: {{ filme.data }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function filtrar() {
+            const idtipo = parseInt(document.getElementById("filtro").value);
+            const cardsContainer = document.getElementById("cards-container");
+            const cards = cardsContainer.querySelectorAll(".card");
+            const tipoClasse = "tipo-" + idtipo;
+
+            for (let i = 0; i < cards.length; i++) {
+                if (!idtipo || cards[i].classList.contains(tipoClasse)) {
+                    cards[i].classList.remove("d-none");
+                } else {
+                    cards[i].classList.add("d-none");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
