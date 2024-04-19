@@ -13,7 +13,7 @@
         }
         th, td {
             border: 1px solid #dddddd;
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
         th {
@@ -35,6 +35,7 @@
         <thead>
             <tr>
                 <th>Posição</th>
+                <th>Poster</th>
                 <th>Título</th>
                 <th>Ano</th>
                 <th>Duração</th>
@@ -42,13 +43,14 @@
                 <th>Nota</th>
                 <th>Tipo</th>
                 <th>Data de Varredura</th>
-                <th>Poster</th>
+                
             </tr>
         </thead>
         <tbody id="corpo-tabela">
             {% for filme in filmes %}
             <tr data-tipo="{{ filme.tipo }}">
                 <td>{{ filme.posicao }}</td>
+                <td><img src="{{ filme.poster }}" alt="{{ filme.titulo }}" width="71.991" height="106.539"></td>
                 <td>{{ filme.titulo }}</td>
                 <td>{{ filme.ano }}</td>
                 <td>{{ filme.duracao }}</td>
@@ -56,7 +58,7 @@
                 <td>{{ filme.nota }}</td>
                 <td>{{ 'Filme' if filme.tipo == 1 else 'Série' }}</td>
                 <td>{{ filme.data_leitura }}</td>
-                <td><img src="{{ filme.poster }}" alt="{{ filme.titulo }}"></td>
+                
             </tr>
             {% endfor %}
         </tbody>

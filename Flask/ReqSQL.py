@@ -57,7 +57,7 @@ def listarRanking():
                    obra.ano, obra.duracao, obra.classificacao, obra.nota, obra.tipo
             FROM ranking
             INNER JOIN obra ON ranking.idobra = obra.idobra
-            INNER JOIN leitura ON ranking.idleitura = leitura.idleitura
+            LEFT JOIN leitura ON ranking.idleitura = leitura.idleitura
         """))
         
         filmes = []
