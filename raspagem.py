@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 from ReqSQL import obter_idobra, criarObra, criarRanking, criarLeitura
-from config import url1, url2
+from config import criarDriver, url1, url2
 
 def extrair_nota(texto):
     try:
@@ -55,7 +55,7 @@ def inserir_obra_e_ranking(idleitura, titulo, idexterno, poster, ano, duracao, c
 
     criarRanking(idleitura, idobra, posicao)
 
-driver = webdriver.Edge()
+driver = criarDriver()
 
 obras = []
 
