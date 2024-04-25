@@ -70,23 +70,23 @@ for tipo in range(1, 3):
 
     driver.get(url1 if tipo == 1 else url2)
 
-    imagens = WebDriverWait(driver, 60).until(
+    imagens = WebDriverWait(driver, 80).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.cli-poster-container img.ipc-image'))
     )
 
-    idsexternos = WebDriverWait(driver, 60).until(
+    idsexternos = WebDriverWait(driver, 80).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.cli-poster-container a.ipc-lockup-overlay'))
     )
 
-    metadados_linha = WebDriverWait(driver, 60).until(
+    metadados_linha = WebDriverWait(driver, 80).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.cli-children div.cli-title-metadata'))
     )
 
-    notas_linha = WebDriverWait(driver, 60).until(
+    notas_linha = WebDriverWait(driver, 80).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.cli-children div.cli-ratings-container'))
     )
 
-    titulos = WebDriverWait(driver, 60).until(
+    titulos = WebDriverWait(driver, 80).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.cli-children h3.ipc-title__text'))
     )
 
@@ -132,7 +132,5 @@ for tipo in range(1, 3):
             inserir_obra_e_ranking(leitura, titulo.text, extrair_idexterno(idsexternos[posicao].get_attribute('href')), imagens[posicao].get_attribute('src'), ano, duracao, classificacao, extrair_nota(notas_linha[posicao].text), posicao + 1, tipo)
 
             posicao = posicao + 1
-
-###print(obras)
-
+            
 driver.close()
