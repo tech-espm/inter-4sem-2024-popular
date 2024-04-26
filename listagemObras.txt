@@ -1,0 +1,70 @@
+<table class="table table-flush table-striped table-hover" id="tabela"></table>
+
+<%- contentFor("topcontent") %>
+
+<form class="card shadow mb-4" id="form">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-sm-6 col-md-3">
+				<div class="form-group">
+					<select id="filtro" name="filtro" class="form-control">
+						<option value="0">Tudo</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center text-md-right">
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</div>
+	</div>
+</form>
+
+<%- contentFor("scripts") %>
+<script type="text/javascript">
+	//<![CDATA[
+	"use strict";
+
+	function filtrar() {
+		if (JsonWebApi.active)
+			return;
+
+		let filtro = document.getElementById("filtro").value;
+
+		Swal.wait();
+
+		JsonWebApi.get("<%- root %>/api/xxx", function (response) {
+			if (response.success) {
+				Swal.close();
+
+				let tabela = prepareDataTable("tabela", {
+					order: [[1, "asc"]],
+					deferRender: true,
+					columns: [
+						{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return '<a target="_blank" title="Editar" href="<%- root %>/documento/editar?id=' + row.id + '" class="btn btn-sm btn-outline-primary"><i class="fa fa-fw fa-edit"></i></a> <button title="Excluir" type="button" data-excluir="1" class="btn btn-sm btn-outline-danger"><i class="fa fa-fw fa-times"></i></button>'; } },
+						{ title: "Nome", render: encode, data: "nome" },
+						{ title: "Nome Curto", render: encode, data: "nomecurto" },
+						{ title: "Tamanho", type: "num", data: "tamanho" },
+						{ title: "Criação", "class": "col-min text-right", "type": "customdateint", data: "criacao" }
+					],
+					data: response.value,
+					export: { title: "Obras" }
+				});
+			} else {
+				Swal.error(response.value + " " + emoji.sad);
+			}
+		}, "filtro", filtro);
+	}
+
+	document.getElementById("form").onsubmit = function (e) {
+		cancelEvent(e);
+
+		filtrar();
+
+		return false;
+	}
+
+	filtrar();
+
+	//]]>
+</script>

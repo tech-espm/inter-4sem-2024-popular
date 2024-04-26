@@ -40,15 +40,15 @@ class UsuarioRoute {
 	}
 
 	public static async listar(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u || !u.admin)
-			res.redirect(app.root + "/acesso");
-		else
+		//let u = await Usuario.cookie(req);
+		//if (!u || !u.admin)
+		//	res.redirect(app.root + "/acesso");
+		//else
 			res.render("usuario/listar", {
 				layout: "layout-tabela",
 				titulo: "Gerenciar Usuários",
 				datatables: true,
-				usuario: u,
+		//		usuario: u,
 				lista: await Usuario.listar()
 			});
 	}

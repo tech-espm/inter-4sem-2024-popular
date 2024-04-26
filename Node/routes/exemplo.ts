@@ -3,51 +3,51 @@ import Usuario = require("../models/usuario");
 
 class ExemploRoute {
 	public static async animacoes(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/animacoes", { layout: "layout-sem-form", titulo: "Animações", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/animacoes", { layout: "layout-sem-form", titulo: "Animações" });
 	}
 
 	public static async bordas(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/bordas", { layout: "layout-sem-form", titulo: "Bordas", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/bordas", { layout: "layout-sem-form", titulo: "Bordas" });
 	}
 
 	public static async botoes(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/botoes", { layout: "layout-sem-form", titulo: "Botões", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/botoes", { layout: "layout-sem-form", titulo: "Botões" });
 	}
 
 	public static async cards(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/cards", { layout: "layout-sem-form", titulo: "Cards", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/cards", { layout: "layout-sem-form", titulo: "Cards" });
 	}
 
 	public static async cores(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/cores", { layout: "layout-sem-form", titulo: "Cores", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/cores", { layout: "layout-sem-form", titulo: "Cores" });
 	}
 
 	public static async data(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/data", { layout: "layout-sem-form", titulo: "Data", datepicker: true, usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/data", { layout: "layout-sem-form", titulo: "Data", datepicker: true });
 	}
 
 	public static async esqueci(req: app.Request, res: app.Response) {
@@ -55,19 +55,19 @@ class ExemploRoute {
 	}
 
 	public static async graficos(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/graficos", { layout: "layout-sem-form", titulo: "Gráficos", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/graficos", { layout: "layout-sem-form", titulo: "Gráficos" });
 	}
 
 	public static async outros(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/outros", { layout: "layout-sem-form", titulo: "Outros", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/outros", { layout: "layout-sem-form", titulo: "Outros" });
 	}
 
 	public static async registro(req: app.Request, res: app.Response) {
@@ -75,27 +75,27 @@ class ExemploRoute {
 	}
 
 	public static async tabelas(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/tabelas", { layout: "layout-tabela", titulo: "Tabelas", datatables: true, usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/tabelas", { layout: "layout-tabela", titulo: "Tabelas", datatables: true });
 	}
 
 	public static async vazia(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/vazia", { titulo: "Vazia", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/vazia", { titulo: "Vazia" });
 	}
 
 	public static async vaziasemform(req: app.Request, res: app.Response) {
-		let u = await Usuario.cookie(req);
-		if (!u)
-			res.redirect(app.root + "/login");
-		else
-			res.render("exemplo/vazia", { layout: "layout-sem-form", titulo: "Vazia (Sem Form)", usuario: u });
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("exemplo/vazia", { layout: "layout-sem-form", titulo: "Vazia (Sem Form)" });
 	}
 }
 
