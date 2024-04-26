@@ -14,7 +14,7 @@
 
 ## Descrição do Projeto
 
-O projeto consiste em desenvolver uma plataforma de análise de popularidade de filmes e séries através de web scraping do site IMDB. A plataforma fornecerá aos usuários informações detalhadas, rankings e análises sobre filmes e séries mais populares, permitindo uma compreensão profunda das tendências atuais do mundo do entretenimento.
+O projeto consiste em desenvolver uma plataforma de análise de popularidade de filmes e séries através de web scraping de um site que contempla informações de popularidade de filmes e séries. A plataforma fornecerá aos usuários informações detalhadas, rankings e análises sobre filmes e séries mais populares, permitindo uma compreensão profunda das tendências atuais do mundo do entretenimento.
 
 ### Problema
 
