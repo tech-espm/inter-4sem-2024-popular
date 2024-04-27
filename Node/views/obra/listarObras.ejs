@@ -1,0 +1,46 @@
+<table class="table table-flush table-striped table-hover" id="tabela"></table>
+
+<%- contentFor("scripts") %>
+<script type="text/javascript">
+  //<![CDATA[
+  "use strict";
+
+  let tabela = prepareDataTable("tabela", {
+    order: [[1, "asc"]], 
+    deferRender: true, 
+    columns: [
+      { title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return '<a target="_blank" title="Info" href="' + row.id + '" class="btn btn btn-outline-warning"><i class="fa fa-fw fa-info"></i></a> <a target="_blank" title="Favoritos" href="<%- root %>' + row.id + '" class="btn btn btn-outline-danger"><i class="fa fa-fw fa-heart"></i></a>'; } },
+      { title: "Posição", type: "num", data: "posicao" },
+      { 
+        title: "Poster", 
+        "class": "col-min text-center",
+        data: "poster",
+        render: function (data, type, row) {
+         return `<img src="${data}" alt="${row.titulo} Poster" width="120" height="190">`;
+      }},
+      { title: "Título", render: encode, data: "titulo" },
+      { title: "Ano", type: "num", data: "ano" },
+      { title: "Duração", render: encode, data: "duracao" },
+      { title: "Classificação", render: encode, data: "classificacao" },
+      { title: "Nota", type: "num", data: "nota" },
+      { title: "Tipo", type: "num", data: "tipo" },
+      { 
+				title: "Data", 
+				"class": "col-min text-right", 
+				"type": "customdateint", 
+				data: "dataLeitura",
+				render: function(data, type, row) {
+					if (type === 'display' || type === 'filter') {
+						var date = new Date(data);
+						return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+					}
+					return data;
+				}
+			 }
+    ],
+	data: <%- JSON.stringify(lista) %>,
+	export: { title: "Obras" }
+  });
+
+  //]]>
+</script>
