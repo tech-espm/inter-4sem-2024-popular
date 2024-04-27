@@ -9,7 +9,6 @@
     order: [[1, "asc"]], 
     deferRender: true, 
     columns: [
-      { title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return '<a target="_blank" title="Info" href="' + row.id + '" class="btn btn btn-outline-warning"><i class="fa fa-fw fa-info"></i></a> <a target="_blank" title="Favoritos" href="<%- root %>' + row.id + '" class="btn btn btn-outline-danger"><i class="fa fa-fw fa-heart"></i></a>'; } },
       { title: "Posição", type: "num", data: "posicao" },
       { 
         title: "Poster", 

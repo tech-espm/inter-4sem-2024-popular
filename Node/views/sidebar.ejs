@@ -12,7 +12,7 @@
 	<!-- Para deixar sempre em destaque, basta adicionar a classe active -->
 	<li class="nav-item">
 		<a class="nav-link" href="<%- root %>/">
-			<i class="fas fa-fw fa-tachometer-alt"></i>
+			<i class="fas fa-fw fa-chart-area"></i>
 			<span>Popularidade</span>
 		</a>
 	</li>
@@ -25,8 +25,8 @@
 		<div id="collapseUsuarios" class="collapse" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<a class="collapse-item" href="<%- root %>/obra/listarObras">Todos</a>
-				<a class="collapse-item" href="<%- root %>/obra/listarFilmes">Filmes</a>
-				<a class="collapse-item" href="<%- root %>/obra/listarSeries">Séries</a>
+				<a class="collapse-item" href="<%- root %>/obra/listarFilmes">Raspagem Filmes</a>
+				<a class="collapse-item" href="<%- root %>/obra/listarSeries">Raspagm Séries</a>
 			</div>
 		</div>
 	</li>
@@ -34,7 +34,7 @@
 	<hr class="sidebar-divider">
 
 	<div class="sidebar-heading">
-		Sobre
+		Informações
 	</div>
 
 	<li class="nav-item">
@@ -70,7 +70,25 @@
 
 	<hr class="sidebar-divider">
 
-	 
+	<div class="sidebar-heading">
+		Extras
+	</div>
+
+	<li class="nav-item">
+		<a class="nav-link" href="<%- root %>/exemplo/graficos">
+			<i class="fas fa-fw fa-thumbs-up"></i>
+			<span>Meus Favoritos</span>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="<%- root %>/exemplo/graficos">
+			<i class="fas fa-fw fa-bell"></i>
+			<span>Notificações</span>
+		</a>
+	</li>
+
+	<hr class="sidebar-divider d-none d-md-block">
+	<!-- 
 	<div class="sidebar-heading">
 		Extras
 	</div>
@@ -110,7 +128,7 @@
 	</li>
 	
 	<hr class="sidebar-divider d-none d-md-block">
-
+	-->
 	
 	<div class="text-center d-none d-md-inline">
 		<button class="rounded-circle border-0" id="sidebarToggle"></button>

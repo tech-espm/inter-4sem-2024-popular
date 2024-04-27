@@ -9,7 +9,7 @@ class ObraRoute {
 		//else
 			res.render("obra/listarObras", {
 				layout: "layout-tabela",
-				titulo: "Obras",
+				titulo: "Todas as Obras",
 				datatables: true,
 		//		usuario: u,
 				lista: await Obra.listarObras()
@@ -23,7 +23,7 @@ class ObraRoute {
 		//else
 			res.render("obra/listarFilmes", {
 				layout: "layout-tabela",
-				titulo: "Filmes",
+				titulo: " Posição Raspagem Filmes ao longo do tempo",
 				datatables: true,
 		//		usuario: u,
 				lista: await Obra.listarFilmes()
@@ -37,7 +37,7 @@ class ObraRoute {
 		//else
 			res.render("obra/listarSeries", {
 				layout: "layout-tabela",
-				titulo: "Séries",
+				titulo: "Posição Raspagem Séries ao longo do tempo",
 				datatables: true,
 		//		usuario: u,
 				lista: await Obra.listarSeries()

@@ -21,11 +21,7 @@ interface Obra {
   
 	  await app.sql.connect(async (sql) => {
 		lista = await sql.query(
-		  `SELECT ranking.posicao, obra.titulo, leitura.data AS dataLeitura, obra.poster,
-			obra.ano, obra.duracao, obra.classificacao, obra.nota, obra.tipo
-			FROM ranking
-			INNER JOIN obra ON ranking.idobra = obra.idobra
-			LEFT JOIN leitura ON ranking.idleitura = leitura.idleitura`
+		  `SELECT idobra, titulo, poster, ano, duracao, classificacao, nota, tipo from obra`
 		) as Obra[];
 	  });
   
