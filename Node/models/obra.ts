@@ -21,12 +21,15 @@ interface Obra {
   
 	  await app.sql.connect(async (sql) => {
 		lista = await sql.query(
-		  `SELECT idobra, titulo, poster, ano, duracao, classificacao, nota, tipo from obra`
+		  `SELECT o.idobra, o.titulo, o.poster, o.ano, o.duracao, o.classificacao, o.nota, o.tipo, o.idexterno, f.idfavorito
+		  from obra o
+		  left join favorito f on f.idobra = o.idobra`
 		) as Obra[];
 	  });
   
 	  return (lista || []);
 	}
+	
 
   public static async listarFilmes(): Promise<Obra[]> {
 	let lista: Obra[] = null;
@@ -61,6 +64,37 @@ interface Obra {
 
 	return (lista || []);
   }
+
+  public static async favoritar(idobra: number, incluir: boolean): Promise<void> {
+	await app.sql.connect(async (sql) => {
+		if (incluir) {
+			await sql.query(
+					`INSERT INTO favorito (idobra) VALUES (?)`,
+					[idobra]
+				);
+			} else {
+				await sql.query(
+					`DELETE FROM favorito WHERE idobra = ?`,
+					[idobra]
+				);
+			}
+		});
+	}
+
+	public static async meusFavoritos(): Promise<Obra[]> {
+        let lista: Obra[] = null;
+
+        await app.sql.connect(async (sql) => {
+            lista = await sql.query(
+                `SELECT o.idobra, o.idexterno, o.titulo, o.poster, o.ano, o.duracao, o.classificacao, o.nota, o.tipo
+				FROM obra o
+				INNER JOIN favorito f ON f.idobra = o.idobra`,
+            ) as Obra[];
+        });
+
+        return lista || [];
+    }
+
 }
 
 

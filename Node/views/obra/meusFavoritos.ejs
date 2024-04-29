@@ -4,18 +4,11 @@
 <script type="text/javascript">
   //<![CDATA[
   "use strict";
-  
-  
+
   let tabela = prepareDataTable("tabela", {
     order: [[1, "asc"]], 
     deferRender: true, 
     columns: [
-      { title: "", "class": "col-min", searchable: false, orderable: false, data: "idobra", render: function (v, type, row) {
-        return (row.idfavorito ?
-          '<button type="button" title="Favoritos" onclick="favoritar(this)" class="btn btn btn-danger"><i class="fa fa-sm fa-heart"></i></button>' :
-          '<button type="button" title="Favoritos" onclick="favoritar(this)" class="btn btn btn-outline-secondary"><i class="fa fa-sm fa-heart"></i></button>'
-        );
-      } },
       { title: "ID", type: "num", data: "idobra" },
       { 
         title: "Poster", 
@@ -34,38 +27,6 @@
     ],
 	data: <%- JSON.stringify(lista) %>,
   });
-
-  function favoritar(botao) {
-    if (JsonWebApi.active) {
-      return;
-    }
-
-    let tr = botao.parentNode.parentNode;
-    let linha = tabela.row(tr);
-    let obra = linha.data();
-
-    Swal.wait();
-
-    JsonWebApi.post("<%- root %>/api/obra/favoritar", {
-      idobra: obra.idobra,
-      //incluir: (obra.idfavorito ? false : true)
-      incluir: !obra.idfavorito
-    }, function (response) {
-      if (response.success) {
-        Swal.close();
-        if (obra.idfavorito) {
-          obra.idfavorito = null;
-        } else {
-          obra.idfavorito = 1;
-        }
-        linha.data(obra);
-        linha.invalidate();
-        linha.draw("page");
-      } else {
-        Swal.error("Erro ao alterar os favoritos: " + response.value);
-      }
-    });
-  }
 
   //]]>
 </script>

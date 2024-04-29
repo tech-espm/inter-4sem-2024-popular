@@ -43,6 +43,20 @@ class ObraRoute {
 				lista: await Obra.listarSeries()
 			});
 	}
+
+	public static async meusFavoritos(req: app.Request, res: app.Response) {
+		//let u = await Usuario.cookie(req);
+		//if (!u || !u.admin)
+		//	res.redirect(app.root + "/acesso");
+		//else
+			res.render("obra/meusFavoritos", {
+				layout: "layout-tabela",
+				titulo: "Obras Favoritadas",
+				datatables: true,
+		//		usuario: u,
+				lista: await Obra.meusFavoritos()
+			});
+	}
 }
 
 export = ObraRoute;

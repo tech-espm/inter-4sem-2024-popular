@@ -312,8 +312,31 @@
 	</div>
 </div>
 
+<div id="tableau-container"></div>
+
 <%- contentFor("scripts") %>
 
 <script src="<%- staticRoot %>/lib/chart.js/chart.min.js"></script>
 <script src="<%- staticRoot %>/js/exemplo/chart-area.js"></script>
 <script src="<%- staticRoot %>/js/exemplo/chart-pie.js"></script>
+
+<script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+
+<script type="text/javascript">
+	function initViz() {
+		let containerDiv = document.getElementById("tableau-container"),
+			url = "https://public.tableau.com/views/Aula_1704/DashExpGrafClassicos?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link",
+			options = {
+				hideTabs: true,
+				hideToolbar: true,
+				onFirstInteractive: function () {
+					console.log("Run this code when the viz has finished loading.");
+				}
+			};
+
+		let viz = new tableau.Viz(containerDiv, url, options);
+		// Create a viz object and embed it in the container div.
+	}
+
+	initViz();
+</script>

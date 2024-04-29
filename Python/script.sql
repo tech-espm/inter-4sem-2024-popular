@@ -30,3 +30,10 @@ CREATE TABLE ranking (
   FOREIGN KEY fk_ranking_idobra (idobra) REFERENCES obra(idobra),
   FOREIGN KEY fk_ranking_idleitura (idleitura) REFERENCES leitura(idleitura)
 );
+
+CREATE TABLE favorito (
+  idfavorito int NOT NULL primary key AUTO_INCREMENT,
+  idobra int not null,
+  UNIQUE KEY un_favorito_idobra (idobra),
+  FOREIGN KEY fk_favorito_idobra (idobra) REFERENCES obra(idobra)
+);
