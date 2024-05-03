@@ -1,39 +1,45 @@
-<table class="table table-flush table-striped table-hover" id="tabela"></table>
+<div id="container-tabela"></div>
+
+<%- contentFor("topcontent") %>
+
+<form class="card shadow mb-4" id="form">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-sm-6 col-md-3">
+				<div class="form-group">
+          <label for="tipo">Tipo de Obra</label>
+					<select id="tipo" name="tipo" class="form-control">
+						<option value="0">Tudo</option>
+						<option value="1">Filmes</option>
+						<option value="2">Séries</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="form-group">
+          <label for="favorito">Favorito</label>
+					<select id="favorito" name="favorito" class="form-control">
+						<option value="0">Tudo</option>
+						<option value="1">Favoritos</option>
+						<option value="2">Não-Favoritos</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center text-md-right">
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</div>
+	</div>
+</form>
 
 <%- contentFor("scripts") %>
 <script type="text/javascript">
   //<![CDATA[
   "use strict";
   
-  
-  let tabela = prepareDataTable("tabela", {
-    order: [[1, "asc"]], 
-    deferRender: true, 
-    columns: [
-      { title: "", "class": "col-min", searchable: false, orderable: false, data: "idobra", render: function (v, type, row) {
-        return (row.idfavorito ?
-          '<button type="button" title="Favoritos" onclick="favoritar(this)" class="btn btn btn-danger"><i class="fa fa-sm fa-heart"></i></button>' :
-          '<button type="button" title="Favoritos" onclick="favoritar(this)" class="btn btn btn-outline-secondary"><i class="fa fa-sm fa-heart"></i></button>'
-        );
-      } },
-      { title: "ID", type: "num", data: "idobra" },
-      { 
-        title: "Poster", 
-        "class": "col-min text-center",
-        data: "poster",
-        render: function (data, type, row) {
-         return `<img src="${data}" alt="${row.titulo} Poster" width="120" height="190">`;
-      }},
-      { title: "Título", render: encode, data: "titulo" },
-      { title: "Ano", type: "num", data: "ano" },
-      { title: "Duração", render: encode, data: "duracao" },
-      { title: "Classificação", render: encode, data: "classificacao" },
-      { title: "Nota", type: "num", data: "nota" },
-      { title: "Tipo", type: "num", data: "tipo" },
-      { title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return  '<a target="_blank" title="Info" href="https://www.imdb.com/title/' + row.idexterno + '/" class="btn btn btn-outline-warning"><i class="fa fa-sm fa-ellipsis-v"></i></a>' } }
-    ],
-	data: <%- JSON.stringify(lista) %>,
-  });
+  let tabela = null,
+    dados = <%- JSON.stringify(lista) %>;
 
   function favoritar(botao) {
     if (JsonWebApi.active) {
@@ -66,6 +72,81 @@
       }
     });
   }
+
+  function prepararTabela(dadosFiltrados) {
+    document.getElementById("container-tabela").innerHTML = '<table class="table table-flush table-striped table-hover" id="tabela"></table>';
+
+    tabela = prepareDataTable("tabela", {
+      order: [[1, "asc"]], 
+      deferRender: true, 
+      columns: [
+        { title: "", "class": "col-min", searchable: false, orderable: false, data: "idobra", render: function (v, type, row) {
+          return (row.idfavorito ?
+            '<button type="button" title="Favoritos" onclick="favoritar(this)" class="btn btn btn-danger"><i class="fa fa-sm fa-heart"></i></button>' :
+            '<button type="button" title="Favoritos" onclick="favoritar(this)" class="btn btn btn-outline-secondary"><i class="fa fa-sm fa-heart"></i></button>'
+          );
+        } },
+        { title: "ID", type: "num", data: "idobra" },
+        { 
+          title: "Poster", 
+          "class": "col-min text-center",
+          data: "poster",
+          render: function (data, type, row) {
+          return `<img src="${data}" alt="${row.titulo} Poster" width="120" height="190">`;
+        }},
+        { title: "Título", render: encode, data: "titulo" },
+        { title: "Ano", type: "num", data: "ano" },
+        { title: "Duração", render: encode, data: "duracao" },
+        { title: "Classificação", render: encode, data: "classificacao" },
+        { title: "Nota", type: "num", data: "nota" },
+        { title: "Tipo", data: function (row) {
+          return (row.tipo == 1 ? "Filme" : "Série");
+        } },
+        { title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return  '<a target="_blank" title="Info" href="https://www.imdb.com/title/' + row.idexterno + '/" class="btn btn btn-outline-warning"><i class="fa fa-sm fa-ellipsis-v"></i></a>' } }
+      ],
+      data: dadosFiltrados,
+    });
+  }
+
+  function filtrar() {
+    let dadosFiltrados = dados.slice();
+
+    let tipo = parseInt(document.getElementById("tipo").value);
+    if (tipo) {
+      for (let i = dadosFiltrados.length - 1; i >= 0; i--) {
+        if (dadosFiltrados[i].tipo !== tipo) {
+          dadosFiltrados.splice(i, 1);
+        }
+      }
+    }
+
+    let favorito = parseInt(document.getElementById("favorito").value);
+    if (favorito === 1) {
+      for (let i = dadosFiltrados.length - 1; i >= 0; i--) {
+        if (!dadosFiltrados[i].idfavorito) {
+          dadosFiltrados.splice(i, 1);
+        }
+      }
+    } else if (favorito === 2) {
+      for (let i = dadosFiltrados.length - 1; i >= 0; i--) {
+        if (dadosFiltrados[i].idfavorito) {
+          dadosFiltrados.splice(i, 1);
+        }
+      }
+    }
+
+    prepararTabela(dadosFiltrados);
+  }
+
+	document.getElementById("form").onsubmit = function (e) {
+		cancelEvent(e);
+
+		filtrar();
+
+		return false;
+	}
+
+  filtrar();
 
   //]]>
 </script>
