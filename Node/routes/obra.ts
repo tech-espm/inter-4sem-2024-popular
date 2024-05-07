@@ -9,7 +9,7 @@ class ObraRoute {
 		//else
 			res.render("obra/listarObras", {
 				layout: "layout-tabela",
-				titulo: "Todas as Obras",
+				titulo: "OBRAS",
 				datatables: true,
 		//		usuario: u,
 				lista: await Obra.listarObras()
@@ -56,6 +56,14 @@ class ObraRoute {
 		//		usuario: u,
 				lista: await Obra.meusFavoritos()
 			});
+	}
+
+	public static async vazioForm(req: app.Request, res: app.Response) {
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("obra/vazioForm", { titulo: "Notificações" });
 	}
 }
 

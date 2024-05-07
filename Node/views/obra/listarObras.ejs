@@ -1,8 +1,53 @@
 <div id="container-tabela"></div>
 
 <%- contentFor("topcontent") %>
+<!-- Collapsable Card Example -->
+<div class="card shadow mb-4">
+  <!-- Card Header - Accordion -->
+  <a href="#collapseCardExample" class="d-block card-header" data-toggle="collapse"
+    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+    <i class="fa fa-filter" aria-hidden="true"></i>
+    FILTROS
+  </a>
+  <!-- Card Content - Collapse -->
+  <div class="collapse" id="collapseCardExample">
+    <div class="card-body">
+      <form class="card shadow mb-4" id="form">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6 col-md-3">
+              <div class="form-group">
+                <label for="tipo">TIPO</label>
+                <select id="tipo" name="tipo" class="form-control">
+                  <option value="0">Tudo</option>
+                  <option value="1">Filmes</option>
+                  <option value="2">Séries</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="form-group">
+                <label for="favorito">FAVORITO</label>
+                <select id="favorito" name="favorito" class="form-control">
+                  <option value="0">Tudo</option>
+                  <option value="1">Favoritos</option>
+                  <option value="2">Não-Favoritos</option>
+                </select>
+              </div>
+            </div>
+          </div>
+      
+          <div class="text-center text-md-right">
+            <button type="submit" class="btn btn-primary">BUSCAR</button>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
 
-<form class="card shadow mb-4" id="form">
+<!-- <form class="card shadow mb-4" id="form">
 	<div class="card-body">
 		<div class="row">
 			<div class="col-sm-6 col-md-3">
@@ -32,6 +77,7 @@
 		</div>
 	</div>
 </form>
+-->
 
 <%- contentFor("scripts") %>
 <script type="text/javascript">
@@ -102,7 +148,7 @@
         { title: "Tipo", data: function (row) {
           return (row.tipo == 1 ? "Filme" : "Série");
         } },
-        { title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return  '<a target="_blank" title="Info" href="https://www.imdb.com/title/' + row.idexterno + '/" class="btn btn btn-outline-warning"><i class="fa fa-sm fa-ellipsis-v"></i></a>' } }
+        { title: " + Info", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return  '<a target="_blank" title="Info" href="https://www.imdb.com/title/' + row.idexterno + '/" class="btn btn btn-outline-warning"><i class="fa fa-sm fa-ellipsis-v"></i></a>' } }
       ],
       data: dadosFiltrados,
     });
