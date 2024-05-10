@@ -25,5 +25,10 @@ export = {
 
 	usuarioSenhaPadrao: process.env.app_usuarioSenhaPadrao,
 	usuarioHashSenhaPadrao: process.env.app_usuarioHashSenhaPadrao,
-	usuarioHashId: parseInt(process.env.app_usuarioHashId as string, 16)
+	usuarioHashId: parseInt(process.env.app_usuarioHashId as string, 16),
+
+	srcFlourish: process.env.app_srcFlourish as string,
+	srcInfo: process.env.app_srcInfo as string,
+	srcTableau: process.env.app_srcTableau as string,
+	srcTableau2: process.env.app_srcTableau2 as string,
 };

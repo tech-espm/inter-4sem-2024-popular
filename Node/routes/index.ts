@@ -1,5 +1,6 @@
 ﻿import app = require("teem");
 import Usuario = require("../models/usuario");
+import appsettings = require("../appsettings");
 
 class IndexRoute {
 	public static async index(req: app.Request, res: app.Response) {
@@ -10,6 +11,9 @@ class IndexRoute {
 			res.render("index/index", {
 				layout: "layout-sem-form",
 				titulo: "Dashboard",
+				srcFlourish: appsettings.srcFlourish,
+				srcTableau: appsettings.srcTableau,
+				srcTableau2: appsettings.srcTableau2
 				//usuario: u
 			});
 	}

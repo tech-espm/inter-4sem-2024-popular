@@ -312,20 +312,130 @@
 	</div>
 </div>
 
-<div id="tableau-container"></div>
+
+<!-- <div id="tableau-container"></div> -->
+
+<!-- <div class="card shadow mb-4">
+	 Card Header - Dropdown
+	<div
+		class="card-header d-flex flex-row align-items-center justify-content-between">
+		TESTE
+		<div class="dropdown no-arrow">
+			<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+			</a>
+			<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+				aria-labelledby="dropdownMenuLink">
+				<div class="dropdown-header">Dropdown Header:</div>
+				<a class="dropdown-item" href="#">Action</a>
+				<a class="dropdown-item" href="#">Another action</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Something else here</a>
+			</div>
+		</div>
+	</div>
+	Card Body
+	<div class="card-body">
+		<div id="tableau-container2"></div>
+	</div>
+</div>
+-->
+
+<div class="flourish-embed flourish-bar-chart-race" data-src="<%= srcFlourish %>"></div>
+<div class="row">
+
+	<div class="col-lg-6">
+
+		<!-- Collapsable Card Example -->
+		<div class="card shadow mb-4">
+			<!-- Card Header - Accordion -->
+			<a href="#collapseCardExample" class="d-block card-header" data-toggle="collapse"
+				role="button" aria-expanded="true" aria-controls="collapseCardExample">
+				TOP 15 FILMES
+			</a>
+			<!-- Card Content - Collapse -->
+			<div class="collapse show" id="collapseCardExample">
+				<div class="card-body">
+					<div id="tableau-container2"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card shadow mb-4">
+			<!-- Card Header - Accordion -->
+			<a href="#collapseCardExample" class="d-block card-header" data-toggle="collapse"
+				role="button" aria-expanded="true" aria-controls="collapseCardExample">
+				TOP 15 SERIES
+			</a>
+			<!-- Card Content - Collapse -->
+			<div class="collapse show" id="collapseCardExample">
+				<div class="card-body">
+					This is a collapsable card example using Bootstrap's built in collapse
+					functionality. <strong>Click on the card header</strong> to see the card body
+					collapse and expand!
+				</div>
+			</div>
+			
+
+	</div>
+
+	</div>
+
+	<div class="col-lg-6">
+
+		<!-- Collapsable Card Example -->
+		<div class="card shadow mb-4">
+			<!-- Card Header - Accordion -->
+			<a href="#collapseCardExample" class="d-block card-header" data-toggle="collapse"
+				role="button" aria-expanded="true" aria-controls="collapseCardExample">
+				Collapsable Card Example
+			</a>
+			<!-- Card Content - Collapse -->
+			<div class="collapse show" id="collapseCardExample">
+				<div class="card-body">
+					<div id="tableau-container3"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card shadow mb-4">
+			<!-- Card Header - Accordion -->
+			<a href="#collapseCardExample" class="d-block card-header" data-toggle="collapse"
+				role="button" aria-expanded="true" aria-controls="collapseCardExample">
+				Collapsable Card Example
+			</a>
+			<!-- Card Content - Collapse -->
+			<div class="collapse show" id="collapseCardExample">
+				<div class="card-body">
+					This is a collapsable card example using Bootstrap's built in collapse
+					functionality. <strong>Click on the card header</strong> to see the card body
+					collapse and expand!
+				</div>
+			</div>
+			
+
+	</div>
+
+	</div>
+
+</div>
+
 
 <%- contentFor("scripts") %>
 
 <script src="<%- staticRoot %>/lib/chart.js/chart.min.js"></script>
 <script src="<%- staticRoot %>/js/exemplo/chart-area.js"></script>
 <script src="<%- staticRoot %>/js/exemplo/chart-pie.js"></script>
+<script src="https://public.flourish.studio/resources/embed.js"></script>
 
 <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
 
 <script type="text/javascript">
 	function initViz() {
 		let containerDiv = document.getElementById("tableau-container"),
-			url = "https://public.tableau.com/views/Aula_1704/DashExpGrafClassicos?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link",
+			url = "<%= srcTableau %>",
+			//url ="https://public.tableau.com/views/Popularidade-Filmes-0605/Planilha2?:language=pt-BR&:sid=&:display_count=n&:origin=viz_share_link"
 			options = {
 				hideTabs: true,
 				hideToolbar: true,
@@ -338,5 +448,37 @@
 		// Create a viz object and embed it in the container div.
 	}
 
-	initViz();
+	function initViz2() {
+		let containerDiv = document.getElementById("tableau-container2"),
+			url ="<%= srcTableau2 %>",
+			options = {
+				hideTabs: true,
+				hideToolbar: true,
+				onFirstInteractive: function () {
+					console.log("Run this code when the viz has finished loading.");
+				}
+			};
+
+		let viz = new tableau.Viz(containerDiv, url, options);
+		// Create a viz object and embed it in the container div.
+	}
+
+	function initViz3() {
+		let containerDiv = document.getElementById("tableau-container3"),
+			url ="https://public.tableau.com/views/Aula_070524/Entradas?:language=pt-BR&:sid=&:display_count=n&:origin=viz_share_link",
+			options = {
+				hideTabs: true,
+				hideToolbar: true,
+				onFirstInteractive: function () {
+					console.log("Run this code when the viz has finished loading.");
+				}
+			};
+
+		let viz = new tableau.Viz(containerDiv, url, options);
+		// Create a viz object and embed it in the container div.
+	}
+
+	//initViz();
+	initViz2();
+	initViz3();
 </script>

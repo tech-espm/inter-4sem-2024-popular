@@ -1,5 +1,6 @@
 import app = require("teem");
 import Obra = require("../models/obra");
+import appsettings = require("../appsettings");
 
 class ObraRoute {
     public static async listarObras(req: app.Request, res: app.Response) {
@@ -11,6 +12,7 @@ class ObraRoute {
 				layout: "layout-tabela",
 				titulo: "OBRAS",
 				datatables: true,
+				srcInfo: appsettings.srcInfo,
 		//		usuario: u,
 				lista: await Obra.listarObras()
 			});
@@ -53,6 +55,7 @@ class ObraRoute {
 				layout: "layout-tabela",
 				titulo: "Obras Favoritadas",
 				datatables: true,
+				srcInfo: appsettings.srcInfo,
 		//		usuario: u,
 				lista: await Obra.meusFavoritos()
 			});
