@@ -31,4 +31,5 @@ export = {
 	srcInfo: process.env.app_srcInfo as string,
 	srcTableau: process.env.app_srcTableau as string,
 	srcTableau2: process.env.app_srcTableau2 as string,
+	srcTableau3: process.env.app_srcTableau3 as string
 };

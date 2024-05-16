@@ -32,6 +32,20 @@ class ObraRoute {
 			});
 	}
 
+	public static async listarFilmes2(req: app.Request, res: app.Response) {
+		//let u = await Usuario.cookie(req);
+		//if (!u || !u.admin)
+		//	res.redirect(app.root + "/acesso");
+		//else
+			res.render("obra/listarFilmes2", {
+				layout: "layout-tabela",
+				titulo: " Tabela Variação Semanal",
+				datatables: true,
+		//		usuario: u,
+				lista: await Obra.listarFilmes()
+			});
+	}
+
 	public static async listarSeries(req: app.Request, res: app.Response) {
 		//let u = await Usuario.cookie(req);
 		//if (!u || !u.admin)

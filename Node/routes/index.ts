@@ -13,7 +13,8 @@ class IndexRoute {
 				titulo: "Dashboard",
 				srcFlourish: appsettings.srcFlourish,
 				srcTableau: appsettings.srcTableau,
-				srcTableau2: appsettings.srcTableau2
+				srcTableau2: appsettings.srcTableau2,
+				srcTableau3: appsettings.srcTableau3
 				//usuario: u
 			});
 	}
