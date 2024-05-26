@@ -1,6 +1,7 @@
 import app = require("teem");
 import Obra = require("../models/obra");
 import appsettings = require("../appsettings");
+import TipoObra = require("../enums/tipoObra");
 
 class ObraRoute {
     public static async listarObras(req: app.Request, res: app.Response) {
@@ -28,7 +29,7 @@ class ObraRoute {
 				titulo: " Posição Raspagem Filmes ao longo do tempo",
 				datatables: true,
 		//		usuario: u,
-				lista: await Obra.listarFilmes()
+				lista: await Obra.listarRankingPorTipo(TipoObra.Filme)
 			});
 	}
 
@@ -42,7 +43,7 @@ class ObraRoute {
 				titulo: " Tabela Variação Semanal",
 				datatables: true,
 		//		usuario: u,
-				lista: await Obra.listarFilmes()
+				lista: await Obra.listarDeltaPorTipo(TipoObra.Filme)
 			});
 	}
 
@@ -56,7 +57,7 @@ class ObraRoute {
 				titulo: "Posição Raspagem Séries ao longo do tempo",
 				datatables: true,
 		//		usuario: u,
-				lista: await Obra.listarSeries()
+				lista: await Obra.listarRankingPorTipo(TipoObra.Serie)
 			});
 	}
 
@@ -81,6 +82,14 @@ class ObraRoute {
 		//	res.redirect(app.root + "/login");
 		//else
 			res.render("obra/vazioForm", { titulo: "Notificações" });
+	}
+
+	public static async sobreNos(req: app.Request, res: app.Response) {
+		//let u = await Usuario.cookie(req);
+		//if (!u)
+		//	res.redirect(app.root + "/login");
+		//else
+			res.render("obra/sobreNos", { layout: "layout-sem-form", titulo: "Sobre Nós" });
 	}
 }
 

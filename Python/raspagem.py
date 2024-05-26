@@ -132,5 +132,6 @@ for tipo in range(1, 3):
             inserir_obra_e_ranking(leitura, titulo.text, extrair_idexterno(idsexternos[posicao].get_attribute('href')), imagens[posicao].get_attribute('src'), ano, duracao, classificacao, extrair_nota(notas_linha[posicao].text), posicao + 1, tipo)
 
             posicao = posicao + 1
-            
+
+print("Dados raspados com sucesso")        
 driver.close()
