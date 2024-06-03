@@ -133,5 +133,6 @@ for tipo in range(1, 3):
 
             posicao = posicao + 1
 
+print()
 print("Dados raspados com sucesso")        
 driver.close()
