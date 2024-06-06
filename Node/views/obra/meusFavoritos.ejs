@@ -23,7 +23,7 @@
       { title: "Classificação", render: encode, data: "classificacao" },
       { title: "Nota", type: "num", data: "nota" },
       { title: "Tipo", type: "num", data: "tipo" },
-      { title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return  '<a target="_blank" title="Info" href="<%= srcInfo %>' + row.idexterno + '/" class="btn btn btn-outline-warning"><i class="fa fa-sm fa-ellipsis-v"></i></a>' } }
+      { title: " + Info", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return  '<a target="_blank" title="Info" href="<%= srcInfo %>' + row.idexterno + '/" class="btn btn btn-outline-warning"><i class="fa fa-sm fa-ellipsis-v"></i></a>' } }
     ],
 	data: <%- JSON.stringify(lista) %>,
   });

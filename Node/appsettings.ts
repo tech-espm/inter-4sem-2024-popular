@@ -28,8 +28,12 @@ export = {
 	usuarioHashId: parseInt(process.env.app_usuarioHashId as string, 16),
 
 	srcFlourish: process.env.app_srcFlourish as string,
+	srcFlourish2: process.env.app_srcFlourish2 as string,
 	srcInfo: process.env.app_srcInfo as string,
 	srcTableau: process.env.app_srcTableau as string,
 	srcTableau2: process.env.app_srcTableau2 as string,
-	srcTableau3: process.env.app_srcTableau3 as string
+	srcTableau3: process.env.app_srcTableau3 as string,
+	srcTableau4: process.env.app_srcTableau4 as string,
+	srcTableau5: process.env.app_srcTableau5 as string,
+	srcTableau6: process.env.app_srcTableau6 as string,
 };

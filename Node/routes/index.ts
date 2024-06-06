@@ -10,11 +10,15 @@ class IndexRoute {
 		//else
 			res.render("index/index", {
 				layout: "layout-sem-form",
-				titulo: "Dashboard",
+				titulo: "Análises & Insights de Popularidade",
 				srcFlourish: appsettings.srcFlourish,
+				srcFlourish2: appsettings.srcFlourish2,
 				srcTableau: appsettings.srcTableau,
 				srcTableau2: appsettings.srcTableau2,
-				srcTableau3: appsettings.srcTableau3
+				srcTableau3: appsettings.srcTableau3,
+				srcTableau4: appsettings.srcTableau4,
+				srcTableau5: appsettings.srcTableau5,
+				srcTableau6: appsettings.srcTableau6
 				//usuario: u
 			});
 	}
