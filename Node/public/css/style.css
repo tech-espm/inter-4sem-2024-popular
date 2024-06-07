@@ -1,11 +1,17 @@
 body {
-    
     font-family: "Quicksand", sans-serif;
 }
 
-h1 {
-    
+h1 {  
     /*font-family: 'Permanent Marker', cursive;*/
     font-family: "Bebas Neue", sans-serif;
+}
 
+
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "MedievalSharp", cursive;
+    
 }
