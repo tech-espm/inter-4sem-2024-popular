@@ -1,0 +1,245 @@
+---
+title: "Projeto Interdisciplinar"
+author: "Dylan Ashby"
+date: "2024-06-04"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(ggplot2)
+library(gridExtra)
+library(caret)
+library(knitr)
+library(MLmetrics)
+library(classifierplots)
+library(lattice)
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(stringr)
+
+setwd("C:/Users/prism/OneDrive/Desktop/Quarto Semestre/Analise Exploratoria")
+raspagem = read_csv("RaspagemFilmesR.csv") %>% drop_na()
+
+raspagem <- raspagem %>% drop_na()
+
+raspagem <- raspagem %>% filter_all(all_vars(. != ""))
+
+convert_to_minutes <- function(time_str) {
+  hours <- as.numeric(str_extract(time_str, "\\d+(?=h)"))
+  minutes <- as.numeric(str_extract(time_str, "\\d+(?=m)"))
+  
+  hours[is.na(hours)] <- 0
+  minutes[is.na(minutes)] <- 0
+  
+  total_minutes <- (hours * 60) + minutes
+  return(total_minutes)
+}
+
+raspagem <- raspagem %>% mutate(total_minutes = convert_to_minutes(duracao))
+
+raspagem <- raspagem %>% filter(total_minutes != 0)
+
+raspagem <- raspagem %>% filter(nota != 0)
+
+raspagem <- raspagem %>% filter(nota != "NULL")
+raspagem <- raspagem %>% filter(ano != "NULL")
+raspagem <- raspagem %>% drop_na()
+
+raspagem$nota = as.numeric(raspagem$nota)
+
+data <- raspagem
+
+# -----------------------------------------------------------------
+
+
+
+unique(data$classificacao)
+
+common_ratings <- c("Livre", "PG", "10", "PG-13", "12", "14", "16", "R", "18")
+data <- data %>% filter(classificacao %in% common_ratings)
+data$classificacao <- factor(data$classificacao, levels = common_ratings)
+data$rating_numeric <- as.numeric(data$classificacao)
+table(data$classificacao, data$rating_numeric)
+data <- na.omit(data)
+
+data$ano <- as.numeric(as.character(data$ano))
+data <- data[!is.na(data$ano), ]
+
+
+```
+
+## Agregação
+
+```{r, echo = FALSE}
+
+aggregated_data <- data %>%
+  group_by(titulo) %>%
+  summarize(
+    mean_position = mean(posicao),
+    mean_review_score = mean(nota),
+    mean_duration = mean(total_minutes),
+    mean_rating_numeric = mean(rating_numeric, na.rm = TRUE),
+    first_date = min(dataLeitura),
+    last_date = max(dataLeitura)
+  )
+
+head(aggregated_data)
+
+
+```
+
+## Distribuição de Notas
+
+```{r, echo = FALSE}
+
+ggplot(aggregated_data, aes(x = mean_review_score)) +
+  geom_histogram(binwidth = 1, fill = "green", color = "black") +
+  labs(title = "Distribuição de Notas", x = "Nota", y = "Count")
+
+```
+
+  A distribuição de notas dos filmes revela que a maioria das pontuações se concentra na faixa entre 60 e 80. Isso sugere que, para um filme se tornar popular, é necessário alcançar uma pontuação acima de 60. No entanto, também destaca o fato de que há filmes com avaliações consideradas horríveis que ainda conseguem garantir um lugar entre os 100 filmes mais populares do mundo. Isso ressalta a complexidade e subjetividade das preferências do público em relação aos filmes, onde outros elementos, como apelo visual, elenco renomado ou marketing eficaz, podem compensar uma pontuação baixa.
+
+## Duração vs Nota
+
+```{r, echo = FALSE}
+
+ggplot(aggregated_data, aes(x = mean_duration, y = mean_review_score)) +
+  geom_point(color = "red") +
+  labs(title = "Duração vs Nota", x = "Duração (minutos)", y = "Nota")
+
+```
+
+Ao analisar a relação entre a duração dos filmes e suas notas, notamos que a maioria dos filmes possui uma duração entre 80 e 120 minutos, com pontuações principalmente variando entre 60 e 80. Isso sugere que a maioria dos filmes populares mundialmente não é muito longa, mas também não são extremamente curtos. Além disso, os filmes com as notas mais altas tendem a ser mais longos. Uma observação interessante é que todos os filmes com duração acima de 140 minutos têm uma nota superior à média (68.27). Isso destaca a tendência de que filmes com uma duração mais longa muitas vezes são bem recebidos pelo público e crítica, refletindo-se em suas pontuações mais elevadas.
+
+## Posição Média por Ano
+
+```{r, echo = FALSE, warning=FALSE}
+
+data1 = data
+
+data1$ano <- format(data1$ano)
+mean_position_year <- data1 %>%
+  group_by(ano) %>%
+  summarize(mean_position = mean(posicao))
+
+ggplot(mean_position_year, aes(x = ano, y = mean_position)) +
+  geom_line(color = "purple") +
+  geom_point(color = "red") +
+  labs(title = "Posição Média por Ano", x = "Ano", y = "Posição Média") +
+  scale_y_reverse()
+
+```
+  
+  Nota-se que, embora a maioria dos filmes seja de 2024, a nota mais alta ocorreu em 2007. Isso pode indicar que, apesar da abundância de filmes recentes, a qualidade excepcional de certos filmes mais antigos ainda os coloca no topo da classificação.
+
+## Heatmap de Filmes por Ano
+
+```{r, echo = FALSE}
+
+data2 = data
+
+movies_per_year <- data2 %>%
+  group_by(ano) %>%
+  summarise(unique_movie_count = n_distinct(titulo))
+
+ggplot(movies_per_year, aes(x = ano, y = unique_movie_count)) +
+  geom_tile(aes(fill = unique_movie_count)) +
+  scale_fill_gradient(low = "orange", high = "blue") +
+  labs(title = "Heatmap de Filmes por Ano", x = "Ano", y = "Numero de Filmes Unicos") +
+  theme_minimal()
+
+```
+
+  A lista de filmes populares que estão saindo atualmente mostra uma seleção dos filmes mais populares do momento. Isso reflete o interesse atual do público e pode indicar tendências ou temas predominantes na cultura cinematográfica contemporânea.
+
+## Duração do Filme vs Classificação
+
+```{r, echo = FALSE}
+
+ggplot(aggregated_data, aes(x = mean_duration, y = mean_rating_numeric)) +
+  geom_point(color = "red") +
+  labs(title = "Duração do Filme vs Classificação", x = "Duração (minutos)", y = "Classificação")
+
+
+```
+
+ Ao observar a relação entre a duração dos filmes e suas classificações, percebe-se que a maioria dos filmes tem uma duração entre 100 e 130 minutos, com uma classificação predominantemente entre 5,0 e 7,5. Isso sugere que os filmes com classificações indicativas para uma audiência mais jovem tendem a ter uma duração menor.
+  
+
+## Box plot 
+
+```{r, echo = FALSE}
+
+ggplot(data, aes(x = classificacao, y = nota)) +
+  geom_boxplot(fill = "green") +
+  labs(title = "Distribuição de Notas de Crítica por Classificação", x = "Classificação", y = "Nota da Crítica")
+
+
+```
+
+  Com esses dados, podemos observar que o grupo de classificação "Livre" apresenta a maior variância de notas, indicando uma ampla gama de avaliações dentro desse grupo. Além disso, percebemos que muitos grupos possuem outliers, o que sugere a presença de filmes que se destacam significativamente em termos de classificação dentro de cada categoria.
+
+  É interessante notar que o grupo de classificação "10 anos" possui a média mais alta entre todos os grupos. No entanto, é importante ressaltar que a nota mais alta pertence ao grupo "16 anos", sugerindo a presença de um outlier nesse grupo. Por outro lado, o grupo "PG" apresenta uma distribuição de notas muito semelhante à do grupo de "10 anos", porém com um outlier significativamente abaixo da média, o que indica uma maior variabilidade dentro desse grupo.
+
+## Contagem de Filmes por Classificação
+
+```{r, echo = FALSE}
+
+ggplot(data, aes(x = classificacao)) +
+  geom_bar(fill = "purple") +
+  labs(title = "Contagem de Filmes por Classificação", x = "Classificação", y = "Contagem")
+
+
+```
+
+  Podemos observar que a maioria dos filmes está classificada dentro do grupo de 14 anos. Além disso, notamos que os grupos "10 anos" e "PG" têm poucos filmes, o que pode ter levado a uma média potencialmente alta no boxplot desses grupos. 
+
+  Os filmes mais populares parecem ser aqueles com classificação indicativa acima de 12 anos. Isso sugere que há uma preferência do público por filmes que possuem uma classificação indicativa mais elevada, o que pode estar relacionado à complexidade das tramas, intensidade das cenas ou temas abordados.
+
+## Relação entre Nota e Posição
+
+```{r, echo = FALSE}
+
+ggplot(data, aes(x = nota, y = posicao)) +
+  geom_point(color = "green") +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(title = "Relacao entre nota e posicao", x = "Nota", y = "Posição") +
+  scale_y_reverse()
+
+
+```
+
+ Com base nesses dados, é evidente que, à medida que as notas dos filmes aumentam, suas posições na classificação tendem a diminuir, especialmente após ultrapassarem a marca de 80.
+
+
+## Resumo Nota, Duração e Ano
+
+```{r, echo = FALSE}
+
+# Estatísticas resumidas para notas de crítica
+resumo_notas <- summary(aggregated_data$mean_review_score)
+resumo_notas
+
+# Estatísticas resumidas para duração do filme
+resumo_duracao <- summary(aggregated_data$mean_duration)
+resumo_duracao
+
+resumo_ano <- summary(data$ano)
+resumo_ano
+
+
+```
+
+Observamos que mesmo um filme com uma pontuação relativamente baixa, como 28, conseguiu garantir um lugar na lista dos filmes mais populares. Além disso, ao examinar as pontuações dos filmes no top 100, notamos que a média é de 68.27, com a pontuação mais alta atingindo 93.
+
+Ao considerar a duração dos filmes, notamos que o filme mais curto tinha uma duração de 83 minutos. A média da duração dos filmes foi de 116.9 minutos, com o filme mais longo estendendo-se até 206 minutos.
+
+Com base nessas análises, é interessante observar que filmes de 1968 ainda têm presença na lista dos filmes mais populares, sugerindo que certas qualidades atemporais ou apelos específicos continuam a cativar o público, independentemente da época de lançamento.
+
+
+
