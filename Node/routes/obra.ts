@@ -11,7 +11,7 @@ class ObraRoute {
 		//else
 			res.render("obra/listarObras", {
 				layout: "layout-tabela",
-				titulo: "OBRAS",
+				titulo: "Obras",
 				datatables: true,
 				srcInfo: appsettings.srcInfo,
 		//		usuario: u,
@@ -81,7 +81,9 @@ class ObraRoute {
 		//if (!u)
 		//	res.redirect(app.root + "/login");
 		//else
-			res.render("obra/vazioForm", { titulo: "Notificações" });
+			res.render("obra/vazioForm", { 
+				titulo: "Notificações" 
+			});
 	}
 
 	public static async sobreNos(req: app.Request, res: app.Response) {
@@ -89,7 +91,10 @@ class ObraRoute {
 		//if (!u)
 		//	res.redirect(app.root + "/login");
 		//else
-			res.render("obra/sobreNos", { layout: "layout-sem-form", titulo: "Sobre Nós" });
+			res.render("obra/sobreNos", { 
+				layout: "layout-sem-form", 
+				titulo: "Sobre Nós" 
+			});
 	}
 }
 

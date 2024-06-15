@@ -10,7 +10,6 @@ class IndexRoute {
 		//else
 			res.render("index/index", {
 				layout: "layout-sem-form",
-				titulo: "Análises & Insights de Popularidade",
 				srcFlourish: appsettings.srcFlourish,
 				srcFlourish2: appsettings.srcFlourish2,
 				srcTableau: appsettings.srcTableau,

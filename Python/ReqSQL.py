@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
-from datetime import datetime
 from config import popular
 
 engine = create_engine(popular)

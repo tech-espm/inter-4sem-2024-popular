@@ -1,10 +1,6 @@
-import sys
-import time
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from datetime import datetime
 from ReqSQL import obter_idobra, criarObra, criarRanking, criarLeitura
 from config import criarDriver, url1, url2
 
