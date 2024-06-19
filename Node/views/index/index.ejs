@@ -14,11 +14,13 @@
 	</div>
 </div>
 
+<hr>
+
 <div class="row">
 	<div class="col-md-6 mb-4">
 		<div class="card shadow" style="min-height: 100%;">
 			<div class="card-header">
-				R CLÉBER
+				INSIGHTS SOBRE AS NOTAS
 			</div>
 			<div class="card-body">
 				<div class="text-center">
@@ -28,15 +30,16 @@
 				<p>A distribuição de notas dos filmes revela que a maioria das pontuações se concentra na faixa entre 60 e 80. Isso sugere que, para um filme se tornar popular, é necessário alcançar uma pontuação acima de 60. No entanto, também destaca o fato de que há filmes com avaliações consideradas horríveis que ainda conseguem garantir 
 					um lugar entre os 100 filmes mais populares do mundo. Isso ressalta a complexidade e subjetividade das preferências do público em relação aos filmes, 
 					onde outros elementos, como apelo visual, elenco renomado ou marketing eficaz, podem compensar uma pontuação baixa.</p>
-				<a target="_blank" rel="nofollow" href="https://undraw.co/">Clique aqui para mais informações &rarr;</a> 
+				<a target="_blank" rel="nofollow" href="/public/pdf/Projeto-Interdisciplinar.pdf">Clique aqui para mais informações &rarr;</a> 
 				<img src="/public/img/R.png" height="40px">
 			</div>
 		</div>
 	</div>
+
 	<div class="col-md-6 mb-4">
 		<div class="card shadow" style="min-height: 100%;">
 			<div class="card-header">
-				R CLÉBER 2
+				ANÁLISE CLASSIFICAÇÃO INDICATIVA
 			</div>
 			<div class="card-body">
 				<div class="text-center">
@@ -47,32 +50,36 @@
 					notamos que os grupos “10 anos” e “PG” têm poucos filmes, o que pode ter levado a uma média potencialmente alta no boxplot desses grupos.
 					Os filmes mais populares parecem ser aqueles com classificação indicativa acima de 12 anos. Isso sugere que há uma preferência do público por filmes 
 					que possuem uma classificação indicativa mais elevada, o que pode estar relacionado à complexidade das tramas, intensidade das cenas ou temas abordados.</p>
-				<a target="_blank" rel="nofollow" href="https://undraw.co/">Clique aqui para mais informações &rarr;</a>
+				<a target="_blank" rel="nofollow" href="/public/pdf/Projeto-Interdisciplinar.pdf">Clique aqui para mais informações &rarr;</a>
 				<img src="/public/img/R.png" height="40px">
 			</div>
 		</div>
 	</div>
 </div>
+<!--
+<hr>
+
 
 <div class="card shadow mb-4">
-	<!-- Card Header - Accordion -->
-	<a href="#collapseCardExample7" class="d-block card-header" data-toggle="collapse"
-		role="button" aria-expanded="false" aria-controls="collapseCardExample7">
-		BAR CHART 1
+	<a href="#collapseCardExample10" class="d-block card-header" data-toggle="collapse"
+		role="button" aria-expanded="true" aria-controls="collapseCardExample10">
+		RANKING POPULARIADADE FILMES
 	</a>
-	<!-- Card Content - Collapse -->
-	<div class="collapse" id="collapseCardExample7">
+	<div class="collapse show" id="collapseCardExample10">
 		<div class="card-body">
 			<div class="flourish-embed flourish-bar-chart-race" data-src="<%= srcFlourish %>"></div>
 		</div>
 	</div>
 </div>
+-->
+
+<hr>
 
 <div class="card shadow mb-4">
 	<!-- Card Header - Accordion -->
 	<a href="#collapseCardExample8" class="d-block card-header" data-toggle="collapse"
 		role="button" aria-expanded="true" aria-controls="collapseCardExample8">
-		BAR CHART 2
+		RANKING POPULARIADADE FILMES
 	</a>
 	<!-- Card Content - Collapse -->
 	<div class="collapse show" id="collapseCardExample8">
@@ -82,21 +89,52 @@
 	</div>
 </div>
 
-<!-- <div id="tableau-container"></div> -->
-
 <div class="card shadow mb-4">
 	<!-- Card Header - Accordion -->
-	<a href="#collapseCardExample" class="d-block card-header" data-toggle="collapse"
-		role="button" aria-expanded="true" aria-controls="collapseCardExample">
-		DASH
+	<a href="#collapseCardExample8" class="d-block card-header" data-toggle="collapse"
+		role="button" aria-expanded="true" aria-controls="collapseCardExample8">
+		RANKING POPULARIADADE SÉRIES
 	</a>
 	<!-- Card Content - Collapse -->
-	<div class="collapse show" id="collapseCardExample">
+	<div class="collapse show" id="collapseCardExample8">
 		<div class="card-body">
-			<div id="tableau-container6"></div>
+			<div class="flourish-embed flourish-bar-chart-race" data-src="<%= srcFlourish3 %>"></div>
 		</div>
 	</div>
 </div>
+<hr>
+
+<div class="card shadow mb-4">
+	<!-- Card Header - Accordion -->
+	<a href="#collapseCardExample3" class="d-block card-header" data-toggle="collapse"
+		role="button" aria-expanded="true" aria-controls="collapseCardExample3">
+		EVOLUÇÃO POPULARIDADE FILMES
+	</a>
+	<!-- Card Content - Collapse -->
+	<div class="collapse show" id="collapseCardExample3">
+		<div class="card-body">
+			<div id="tableau-container4"></div>
+		</div>
+	</div>
+
+</div>
+
+<div class="card shadow mb-4">
+	<!-- Card Header - Accordion -->
+	<a href="#collapseCardExample5" class="d-block card-header" data-toggle="collapse"
+		role="button" aria-expanded="true" aria-controls="collapseCardExample5">
+		EVOLUÇÃO POPULARIDADE SÉRIES
+	</a>
+	<!-- Card Content - Collapse -->
+	<div class="collapse show" id="collapseCardExample5">
+		<div class="card-body">
+			<div id="tableau-container2"></div>
+		</div>
+	</div>	
+
+</div>
+
+<hr>
 
 <div class="row">
 
@@ -107,29 +145,14 @@
 			<!-- Card Header - Accordion -->
 			<a href="#collapseCardExample2" class="d-block card-header" data-toggle="collapse"
 				role="button" aria-expanded="true" aria-controls="collapseCardExample2">
-				TOP 15 FILMES
+				POPULARIDADE DE FILMES - INDIVIDUAL
 			</a>
 			<!-- Card Content - Collapse -->
 			<div class="collapse show" id="collapseCardExample2">
 				<div class="card-body">
-					<div id="tableau-container2"></div>
+					<div id="tableau-container5"></div>
 				</div>
 			</div>
-		</div>
-
-		<div class="card shadow mb-4">
-			<!-- Card Header - Accordion -->
-			<a href="#collapseCardExample3" class="d-block card-header" data-toggle="collapse"
-				role="button" aria-expanded="true" aria-controls="collapseCardExample3">
-				TOP 15 SERIES
-			</a>
-			<!-- Card Content - Collapse -->
-			<div class="collapse show" id="collapseCardExample3">
-				<div class="card-body">
-					<div id="tableau-container4"></div>
-				</div>
-			</div>
-
 		</div>
 
 	</div>
@@ -141,7 +164,7 @@
 			<!-- Card Header - Accordion -->
 			<a href="#collapseCardExample4" class="d-block card-header" data-toggle="collapse"
 				role="button" aria-expanded="true" aria-controls="collapseCardExample4">
-				Collapsable Card Example
+				POPULARIDADE DE SÉRIES - INDIVUDUAL
 			</a>
 			<!-- Card Content - Collapse -->
 			<div class="collapse show" id="collapseCardExample4">
@@ -149,21 +172,6 @@
 					<div id="tableau-container3"></div>
 				</div>
 			</div>
-		</div>
-
-		<div class="card shadow mb-4">
-			<!-- Card Header - Accordion -->
-			<a href="#collapseCardExample5" class="d-block card-header" data-toggle="collapse"
-				role="button" aria-expanded="true" aria-controls="collapseCardExample5">
-				Collapsable Card Example
-			</a>
-			<!-- Card Content - Collapse -->
-			<div class="collapse show" id="collapseCardExample5">
-				<div class="card-body">
-					<div id="tableau-container5"></div>
-				</div>
-			</div>	
-
 		</div>
 
 	</div>
@@ -180,19 +188,6 @@
 <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
 
 <script type="text/javascript">
-	function initViz() {
-		let containerDiv = document.getElementById("tableau-container"),
-			url = "<%= srcTableau %>",
-			options = {
-				hideTabs: true,
-				hideToolbar: true,
-				onFirstInteractive: function () {
-					console.log("Run this code when the viz has finished loading.");
-				}
-			};
-
-		let viz = new tableau.Viz(containerDiv, url, options);
-	}
 
 	function initViz2() {
 		let containerDiv = document.getElementById("tableau-container2"),
@@ -250,25 +245,9 @@
 		let viz = new tableau.Viz(containerDiv, url, options);
 	}
 
-	function initViz6() {
-		let containerDiv = document.getElementById("tableau-container6"),
-			url ="<%= srcTableau6 %>",
-			options = {
-				hideTabs: true,
-				hideToolbar: true,
-				onFirstInteractive: function () {
-					console.log("Run this code when the viz has finished loading.");
-				}
-			};
-
-		let viz = new tableau.Viz(containerDiv, url, options);
-	}
-
-	//initViz();
 	initViz2();
 	initViz3();
 	initViz4();
 	initViz5();
-	initViz6();
 
 </script>

@@ -10,14 +10,14 @@ class IndexRoute {
 		//else
 			res.render("index/index", {
 				layout: "layout-sem-form",
+				titulo: "Análises e Insights",
 				srcFlourish: appsettings.srcFlourish,
 				srcFlourish2: appsettings.srcFlourish2,
-				srcTableau: appsettings.srcTableau,
+				srcFlourish3: appsettings.srcFlourish3,
 				srcTableau2: appsettings.srcTableau2,
 				srcTableau3: appsettings.srcTableau3,
 				srcTableau4: appsettings.srcTableau4,
-				srcTableau5: appsettings.srcTableau5,
-				srcTableau6: appsettings.srcTableau6
+				srcTableau5: appsettings.srcTableau5
 				//usuario: u
 			});
 	}
